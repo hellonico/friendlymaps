@@ -1,1 +1,1 @@
-web: lein trampoline run -m friendly.server $PORT
+web: lein with-profile production trampoline run -m friendly.server $PORT

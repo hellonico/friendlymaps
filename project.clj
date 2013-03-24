@@ -1,7 +1,7 @@
 (defproject friendly "0.1.0-SNAPSHOT"
             :description "FIXME: write this!"
             :plugins [[lein-ring "0.8.3"]]
-            :min-lein-version "2.1.0"
+            :min-lein-version "2.0.0"
             :production {:misc "configuration" ; app-specific stuff
              :offline true
              :mirrors {#"central|clojars"
