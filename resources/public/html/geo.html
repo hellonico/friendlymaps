@@ -2,48 +2,31 @@
 <html ng-app="myapp">
 <head>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.min.js"></script>
-	<script src="http://api.mygeoposition.com/api/geopicker/api.js" type="text/javascript"></script>
-	<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?sensor=true">
-    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.min.js"></script>
+<script src="http://api.mygeoposition.com/api/geopicker/api.js" type="text/javascript"></script>
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?sensor=true">
+</script>
 
-	<script src="/app/geo.js"></script>
+<script src="/app/geo.js"></script>
 
-	<style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-    </style>
+<style type="text/css">
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map-canvas { height: 100% }
+</style>
 
-
-	<link rel="stylesheet" href="/app/todo.css">
-	<link rel="stylesheet" href="/css/gumby.css">
+<link rel="stylesheet" href="/app/todo.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/gumby.css">
 </head>
 <body>
 
-	<div class="container" ng-controller="GeoCtrl">
-		<div class="row">
+<div ng-view>
 
-			<h1>Geo Coding</h1>
+</div>
 
-			<div>
-
-				<form ng-submit="locate()">
-					<input type="text" ng-model="geotext" size="50" placeholder="Address">
-					<input class="btn-primary" type="submit" value="geo">
-				</form>
-
-			</div>
-			<span>{{remaining}}</span>
-
-		</div>
-
-		<div class="row">
-			<div style="width:400px; height:300px;" id="map-canvas"></div>
-		</div>
-	</div>
 
 
 </body>

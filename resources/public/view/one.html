@@ -1,0 +1,37 @@
+
+<div class="container">
+  <div class="row">
+
+  <div class="four columns">
+
+  <h4 class="lead">Company Data</h4>
+  <form ng-submit="addCompany(company)">
+    <ul>
+      <li class="field"><input ng-model="company.name" class="text input" type="text" placeholder="company name" /></li>
+      <li class="field"><input ng-model="company.email" class="email input" type="email" placeholder="Email" /></li>
+      <li class="field"><input class="password input" type="url" placeholder="Website" /></li>
+      <li class="field"><input class="phone input" type="tel" placeholder="Telephone Number" /></li>
+
+      <li class="field"><input class="text input" type="text" placeholder="Address" /></li>
+      <li class="append field">
+      		<input ng-model="address" class="xwide text input" type="text" placeholder="Address" />
+            <div class="medium primary btn"><a ng-click="locate()">Map</a></div>
+	  </li>
+
+      <li class="field"></li>
+      <li class="field"><textarea class="input textarea" placeholder="Business description" rows="3"></textarea></li>
+
+    </ul>
+
+    <div class="medium default btn"><button type="submit">Save</button></div>
+    <div class="medium default btn"><a href="#/list">Cancel</a></div>
+  </form>
+</div>
+<div class="four columns">
+		<div style="margin-top: 100px; width:400px; height:300px;" id="map-canvas"></div>
+</div>
+
+
+</div>
+
+</div>

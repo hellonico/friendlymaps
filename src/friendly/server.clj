@@ -26,9 +26,18 @@
     {:status 200}
     )))
 
+(defroutes company
+  (POST "/" {params :body} (do 
+    (data/insert-one "company" (parse-string (slurp params))) 
+    {:status 200}
+    ))
+  (GET "/" [] (resp/json (data/find-all "company")))
+  )
+
 (defroutes
   app
   (context "/todo" [] todo)
+  (context "/company" [] company)
   (GET "/" [] (render-file "friendly/html/main.html" {}))
   (GET "/json/:id" [id] (resp/json {:name id}))
   (GET
