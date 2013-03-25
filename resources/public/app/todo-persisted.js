@@ -1,12 +1,8 @@
 angular.module("myapp", ['ngResource']);
 
-// http://jsfiddle.net/johnlindquist/qmNvq/
 function TodoCtrl($scope, $resource) {
 
-    var Todo = $resource("/todo/:_id", 
-        {_id: "@_id"}, 
-        // {},
-        {empty: {method:"DELETE"}});
+    var Todo = $resource("/todo/:_id", {_id: "@_id"}, {empty: {method:"DELETE"}});
     $scope.todos = Todo.query();
     
     $scope.addTodo = function() {
@@ -19,9 +15,7 @@ function TodoCtrl($scope, $resource) {
     };
 
     $scope.done = function(todo) {
-        // console.log("delete:"+todo);
         todo.$save();
-        // todo.$remove();
     }
     
     $scope.remaining = function() {
@@ -33,13 +27,8 @@ function TodoCtrl($scope, $resource) {
     };
     
     $scope.archive = function() {
-        // var todo = new Todo();
         new Todo().$empty();
         $scope.todos = [];
-        // var oldTodos = $scope.todos;
-        // $scope.todos = [];
-        // angular.forEach(oldTodos, function(todo) {
-        //     if (!todo.done) $scope.todos.push(todo);
-        // });
     };
+    
 }
