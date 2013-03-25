@@ -1,12 +1,28 @@
-function TodoCtrl($scope) {
-    $scope.todos = [
-    {text:'learn angular', done:true},
-    {text:'build an angular app', done:false}];
+angular.module("myapp", ['ngResource']);
+
+// http://jsfiddle.net/johnlindquist/qmNvq/
+function TodoCtrl($scope, $resource) {
+
+    var Todo = $resource("/todo/:_id", 
+        {_id: "@_id"}, 
+        // {},
+        {empty: {method:"DELETE"}});
+    $scope.todos = Todo.query();
     
     $scope.addTodo = function() {
-        $scope.todos.push({text:$scope.todoText, done:false});
+        var todo = new Todo();
+        todo.text = $scope.todoText;
+        todo.done = false;
+        todo.$save();
+        $scope.todos.push(todo);
         $scope.todoText = '';
     };
+
+    $scope.done = function(todo) {
+        // console.log("delete:"+todo);
+        todo.$save();
+        // todo.$remove();
+    }
     
     $scope.remaining = function() {
         var count = 0;
@@ -17,10 +33,13 @@ function TodoCtrl($scope) {
     };
     
     $scope.archive = function() {
-        var oldTodos = $scope.todos;
+        // var todo = new Todo();
+        new Todo().$empty();
         $scope.todos = [];
-        angular.forEach(oldTodos, function(todo) {
-            if (!todo.done) $scope.todos.push(todo);
-        });
+        // var oldTodos = $scope.todos;
+        // $scope.todos = [];
+        // angular.forEach(oldTodos, function(todo) {
+        //     if (!todo.done) $scope.todos.push(todo);
+        // });
     };
 }

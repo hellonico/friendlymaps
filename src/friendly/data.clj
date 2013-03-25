@@ -1,5 +1,6 @@
 (ns friendly.data
 	(:require monger.json)
+	(:import org.bson.types.ObjectId)
 	(:require [monger.collection :as mc])
 	(:require [monger.core :as mg]))
 
@@ -8,11 +9,15 @@
 
 ; http://clojuremongodb.info/articles/getting_started.html
 
-(defn insert-in-mongo[]
-	(mc/insert "documents" {:first_name "John" :last_name "Lennon" }))
-
-(defn delete-all[]
-	(mc/remove "documents"))
-
-(defn list-all[]
-	(mc/find-maps "documents"))
+(defn find-one [serie id]
+	(mc/find-one serie { :_id (ObjectId. id) })	)
+(defn delete-one [serie id]
+	(mc/remove serie { :_id (ObjectId. id) }) )
+(defn delete-all [serie]
+	(mc/remove serie))
+(defn insert-one [serie values]
+	(mc/insert serie values))
+(defn update-one [serie id values]
+	(mc/update serie { :_id (ObjectId. id) } values ))
+(defn find-all [serie]
+	(mc/find-maps serie))

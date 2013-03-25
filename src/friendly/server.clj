@@ -1,5 +1,6 @@
 (ns friendly.server
   (:use compojure.core)
+  (:require [cheshire.core :refer :all])
   (:require [friendly.data :as data])
   (:use [ring.middleware.resource ])
   (:use [ring.adapter.jetty :only [run-jetty]])
@@ -8,14 +9,26 @@
   (:require [noir.util.middleware :as middleware])
   (:require [compojure.route :as route]))
 
-(defroutes mongo
-  (GET "/insert" [] (do (data/insert-in-mongo) "OK"))
-  (GET "/deleteall" [] (do (data/delete-all)) "OK")
-  (GET "/" [] (resp/json (data/list-all))))
+(defroutes todo
+  (GET "/:id" [id] (resp/json (data/find-one "todo" id)))
+  (GET "/" [] (resp/json (data/find-all "todo")))
+  (DELETE "/:id" [id] (data/delete-one "todo" id))
+  (DELETE "/" [] (do (data/delete-all "todo") {:status 200}))
+  (POST "/:id" {params :body} (do 
+    (let [
+      ps (parse-string (slurp params))
+      id (ps "_id")
+      ups (apply dissoc ps ["_id"])
+      ]
+    (data/update-one "todo" id ups) {:status 200})))
+  (POST "/" {params :body} (do 
+    (data/insert-one "todo" (parse-string (slurp params))) 
+    {:status 200}
+    )))
 
 (defroutes
   app
-  (context "/mongo" [] mongo)
+  (context "/todo" [] todo)
   (GET "/" [] (render-file "friendly/html/main.html" {}))
   (GET "/json/:id" [id] (resp/json {:name id}))
   (GET

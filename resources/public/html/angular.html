@@ -1,7 +1,8 @@
     <!doctype html>
-    <html ng-app>
+    <html ng-app="myapp">
     <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.min.js"></script>
     <script src="/app/todo.js"></script>
     <link rel="stylesheet" href="/app/todo.css">
     </head>
@@ -12,7 +13,7 @@
     [ <a href="" ng-click="archive()">archive</a> ]
     <ul class="unstyled">
     <li ng-repeat="todo in todos">
-    <input type="checkbox" ng-model="todo.done">
+    <input type="checkbox" ng-model="todo.done" ng-click="done(todo)">
     <span class="done-{{todo.done}}">{{todo.text}}</span>
     </li>
     </ul>
