@@ -15,6 +15,8 @@
                         [compojure "1.1.5"]
                         [com.cemerick/friend "0.1.4"]
                         [friend-oauth2 "0.0.3"]
+
+                        [com.novemberain/monger "1.5.0-rc1"]
             ]
             :ring {:handler friendly.server/handler
             ; comment the below for friends demo

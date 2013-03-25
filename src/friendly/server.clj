@@ -1,5 +1,6 @@
 (ns friendly.server
   (:use compojure.core)
+  (:require [friendly.data :as data])
   (:use [ring.middleware.resource ])
   (:use [ring.adapter.jetty :only [run-jetty]])
   (:require [clabango.parser :refer [render-file]])
@@ -7,8 +8,14 @@
   (:require [noir.util.middleware :as middleware])
   (:require [compojure.route :as route]))
 
+(defroutes mongo
+  (GET "/insert" [] (do (data/insert-in-mongo) "OK"))
+  (GET "/deleteall" [] (do (data/delete-all)) "OK")
+  (GET "/" [] (resp/json (data/list-all))))
+
 (defroutes
   app
+  (context "/mongo" [] mongo)
   (GET "/" [] (render-file "friendly/html/main.html" {}))
   (GET "/json/:id" [id] (resp/json {:name id}))
   (GET
