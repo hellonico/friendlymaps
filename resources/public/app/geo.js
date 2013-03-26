@@ -158,11 +158,11 @@ function MapCtrl($scope, $resource, $location) {
 
      google.maps.event.addListener(myMarker, 'click', function(event) {
       console.log(event);
-      $("#details").html("<h2>"+this.custom["name"]+"</h2>");
+      $("#details").html("<h3>"+this.custom["name"]+"</h3>");
       if (this.custom["address"])
-      $("#details").append("<h4>"+this.custom["address"]+"</h4>");
+      $("#details").append("<h5>"+this.custom["address"]+"</h5>");
       if (this.custom["description"])
-      $("#details").append("<h4>"+this.custom["description"]+"</h4>");
+      $("#details").append("<h5>"+this.custom["description"]+"</h5>");
      });
 
     }
