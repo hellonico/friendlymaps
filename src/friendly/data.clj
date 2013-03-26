@@ -5,7 +5,8 @@
 	(:require [monger.core :as mg]))
 
 (def url (System/getenv "MONGOHQ_URL"))
-(mg/connect-via-uri! url)
+(if (not (nil? url))
+  (mg/connect-via-uri! url))
 
 ; http://clojuremongodb.info/articles/getting_started.html
 
