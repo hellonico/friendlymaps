@@ -10,6 +10,34 @@
       <li class="field"><input ng-model="company.name" class="text input" type="text" placeholder="company name" /></li>
       <li class="field"><input ng-model="company.email" class="email input" type="email" placeholder="Email" /></li>
       <li class="field"><input ng-model="company.website" class="url input" type="url" placeholder="Website" /></li>
+      <li class="field"><input ng-model="company.twitter" class="url input" type="url" placeholder="Twitter" /></li>
+
+      <li class="field">
+                <div class="picker">
+                  <select ng-change="updateIcon()" ng-model="company.type">
+                    <option value="startup">Start Up</option>
+                    <option value="shared">Shared Office</option>
+                    <option value="coffee">Coffee Shop</option>
+                  </select>
+                </div>
+                <img id="type-icon" src="/icons/office.png"/>
+      </li>
+
+
+<!--       <li class="field">
+                <label class="checkbox" for="checkbox1">
+                  <input ng-model="company.hiring" name="checkbox1" type="checkbox" id="checkbox1">
+                  <span></span> Hiring
+                </label>
+      </li>
+
+      <li class="field">
+                <label class="checkbox" for="checkbox2">
+                  <input name="checkbox2" type="checkbox" id="checkbox2">
+                  <span></span> Looking for fundings
+                </label>
+      </li> -->
+
       <li class="field"><input ng-model="company.phone" class="phone input" type="tel" placeholder="Telephone Number" /></li>
       <li class="append field">
       		<input ng-model="company.address" class="xwide text input" type="text" placeholder="Address" />
