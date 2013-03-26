@@ -59,11 +59,14 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
 
      google.maps.event.addListener(myMarker, 'click', function(event) {
       console.log(event);
-      $("#details").html("<h3>"+this.custom["name"]+"</h3>");
+        $("#details").html("<h3>"+this.custom["name"]+"</h3>");
       if (this.custom["address"])
-      $("#details").append("<h5>"+this.custom["address"]+"</h5>");
+        $("#details").append("<h5>"+this.custom["address"]+"</h5>");
       if (this.custom["description"])
-      $("#details").append("<h5>"+this.custom["description"]+"</h5>");
+        $("#details").append("<h5>"+this.custom["description"]+"</h5>");
+      if (this.custom["website"])
+        $("#details")
+          .append("<a target=\"_blank\" href=\""+this.custom["website"]+"\">"+this.custom["website"]+"</a>");
      });
 
      markers.push(myMarker);
