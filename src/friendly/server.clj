@@ -38,7 +38,7 @@
     (data/insert-one "company" (parse-string (slurp params))) 
     {:status 200}
     ))
-  (GET "/" [] (resp/json (data/find-all "company")))
+  (GET "/" {params :params} (resp/json (data/find-some "company" params)))
   (GET "/:id" [id] (resp/json (data/find-one "company" id)))
   (DELETE "/:id" [id] (do (data/delete-one "company" id) {:status 200}))
   )

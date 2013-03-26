@@ -22,3 +22,5 @@
 	(mc/update serie { :_id (ObjectId. id) } values ))
 (defn find-all [serie]
 	(mc/find-maps serie))
+(defn find-some [serie params]
+	(mc/find-maps serie params))

@@ -1,5 +1,21 @@
 function MapCtrl($scope, $resource, $location, CompanyResource) {
 
+   var markers = [];
+
+   $scope.types = ["shared", "coffee", "startup"];
+   $scope.selected = undefined;
+
+   $scope.isSelected = function(section) {
+    return $scope.selected === section;
+   }
+
+   $scope.subselect = function(type) {
+    $scope.selected = type;
+    $scope.companies = CompanyResource.query({type: type}, function() {
+      addMarkers($scope.companies);  
+    });
+   }
+
    // map options
    var mapOptions = {
           center: new google.maps.LatLng(35.6580681,139.7515992), // minato-ku
@@ -8,6 +24,7 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
     };
    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
+   // init companies
    $scope.companies = CompanyResource.query(function() {
       addMarkers($scope.companies);
    });
@@ -21,19 +38,24 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
   }
 
   function addMarkers(companies) {
+    console.log("showing:"+companies.length);
+
+    // TODO: WHY ????
+    map.clearMarkers(markers);
+    markers = [];
 
     for (i = 0; i < companies.length; i++) {
     
     var loc = companies[i]["location"];
-
+    var latlng = new google.maps.LatLng(loc["kb"], loc["lb"]);
+    
     var myMarker = new google.maps.Marker({
-      position: new google.maps.LatLng(loc["kb"], loc["lb"]),
+      position: latlng,
       icon: "/icons/"+companies[i]["type"]+".png",
       map: map,
       title: companies[i]["name"],
       custom : companies[i]
     });
-
 
      google.maps.event.addListener(myMarker, 'click', function(event) {
       console.log(event);
@@ -44,7 +66,11 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
       $("#details").append("<h5>"+this.custom["description"]+"</h5>");
      });
 
+     markers.push(myMarker);
+
     }
+
+    console.log("Markers"+markers.length);
 
   }
   

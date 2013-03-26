@@ -1,4 +1,4 @@
-function GeoCtrl($scope, $resource, $routeParams, CompanyResource) {
+function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
 
   // var Company = $resource("/company/:_id", {_id: "@_id"});
 
@@ -12,19 +12,15 @@ function GeoCtrl($scope, $resource, $routeParams, CompanyResource) {
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   var markers = [];
 
-  google.maps.Map.prototype.clearMarkers = function() {
-    for(var i=0; i < markers.length; i++){
-        markers[i].setMap(null);
-    }
-    markers = [];
-  };
   function addMarker(loc) {
-    console.log(loc);
+    $scope.company.location = loc;
+    
 
     var latlng = new google.maps.LatLng(loc["kb"], loc["lb"]);
-   
-    map.clearMarkers();
+    
+    map.clearMarkers(markers);
     map.setCenter(latlng);
+    
     var marker = new google.maps.Marker({
       map: map,
       title: $scope.company.address,
@@ -45,6 +41,9 @@ function GeoCtrl($scope, $resource, $routeParams, CompanyResource) {
     if(c.location == undefined)
       c.location = loc;
     c.$save();
+
+    // redirect to list
+    $location.path( "/list" ) ;
   }
 
 	$scope.locate = function() {

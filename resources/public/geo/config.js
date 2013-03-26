@@ -34,10 +34,12 @@ angular
   .config(guidebookConfig)
   .factory("CompanyResource", function ($resource) {
     return $resource("/company/:_id", {_id: "@_id"}); 
-  })
-  // .factory("IconResource", function() {
-  //   return function(rsc) {
-        
-  //   }
-  // })
-  ;
+  });
+
+
+google.maps.Map.prototype.clearMarkers = function(markers) {
+  for(var i=0; i < markers.length; i++){
+      markers[i].setMap(null);
+  }
+  markers = [];
+};
