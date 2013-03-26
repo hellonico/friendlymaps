@@ -81,5 +81,4 @@
 
 (defn -main [port]
   (let [port (Integer/parseInt port)]
-    (run-jetty app {:port (Integer. port)})))
-
+    (run-jetty handler {:port (Integer. port)})))
