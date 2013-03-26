@@ -1,1 +1,1 @@
-lein ring server-headless 3000
+export MONGOHQ_URL="mongodb://localhost/test" ; lein ring server 3000

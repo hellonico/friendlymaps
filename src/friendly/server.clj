@@ -27,11 +27,20 @@
     )))
 
 (defroutes company
+  (POST "/:id" {params :body} (do 
+    (let [
+      ps (parse-string (slurp params))
+      id (ps "_id")
+      ups (apply dissoc ps ["_id"])
+      ]
+    (data/update-one "company" id ups) {:status 200})))
   (POST "/" {params :body} (do 
     (data/insert-one "company" (parse-string (slurp params))) 
     {:status 200}
     ))
   (GET "/" [] (resp/json (data/find-all "company")))
+  (GET "/:id" [id] (resp/json (data/find-one "company" id)))
+  (DELETE "/:id" [id] (do (data/delete-one "company" id) {:status 200}))
   )
 
 (defroutes
