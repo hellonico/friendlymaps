@@ -84,7 +84,8 @@ function GeoCtrl($scope, $resource, $routeParams) {
 
   $scope.addCompany = function(company) {
     var c = new Company(company);
-    c.location = loc;
+    if(c.location == undefined)
+      c.location = loc;
     c.$save();
   }
 
