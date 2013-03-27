@@ -1,7 +1,11 @@
 
-function ListCtrl($scope, $resource) {
+function ListCtrl($scope, $resource, $routeParams) {
   var Company = $resource("/company/:_id", {_id: "@_id"});  
-  $scope.companies = Company.query();
+  // if($routeParams.length > 0) {
+  	// console.log();
+  // } else {
+  	$scope.companies = Company.query($routeParams);	
+  // }
 
   $scope.delete = function(company) {
     console.log(company);

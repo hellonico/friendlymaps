@@ -1,14 +1,20 @@
+<div class="row" style="margin-bottom: 20px;">
+<button class="small pretty primary btn">
+            <a href="#/edit/">New</a>
+</button>
+</div>
+
 <div class="row">
-  
+
 <table class="table table-striped">
 <tr ng-repeat="company in companies">
 	<td><a href="#/edit/{{company._id}}">{{company.name}}</a></td>
-  <td><img style="height:32px;width:24px" src="/icons/{{company.type}}.png"/></td>
+  <td><img style="height:32px;width:28px" src="/icons/{{company.type}}.png"/></td>
 	<td>
-		 <button ng-click="delete(company)" class="small pretty default btn">
+		 <button class="small pretty warning btn">
             <a>delete</a>
-          </button>
-    </td>
+      </button>
+  </td>
 </tr>
 </table>
 

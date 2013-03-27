@@ -4,7 +4,7 @@
 
   <div class="four columns">
 
-  <h4 class="lead">Company Data</h4>
+  <h4 class="lead">Place Data</h4>
   <form ng-submit="addCompany(company)">
     <ul>
       <li class="field"><input ng-model="company.name" class="text input" type="text" placeholder="company name" /></li>
@@ -13,8 +13,17 @@
       <li class="field"><input ng-model="company.twitter" class="url input" type="url" placeholder="Twitter" /></li>
 
       <li class="field">
-                <div class="picker">
-                  <select ng-change="updateIcon()" ng-model="company.type">
+                <div class="xwide picker">
+                  <select style="font-size:14px" ng-model="company.hiring">
+                    <option value="true">Hiring</option>
+                    <option selected="selected" value="false">Not Hiring</option>
+                  </select>
+                </div>
+      </li>
+
+      <li class="field">
+                <div class="xwide picker">
+                  <select style="font-size:14px" ng-change="updateIcon()" ng-model="company.type">
                     <option value="startup">Start Up</option>
                     <option value="shared">Shared Office</option>
                     <option value="coffee">Coffee Shop</option>
@@ -23,26 +32,11 @@
                 <img id="type-icon" src="/icons/office.png"/>
       </li>
 
-
-<!--       <li class="field">
-                <label class="checkbox" for="checkbox1">
-                  <input ng-model="company.hiring" name="checkbox1" type="checkbox" id="checkbox1">
-                  <span></span> Hiring
-                </label>
-      </li>
-
-      <li class="field">
-                <label class="checkbox" for="checkbox2">
-                  <input name="checkbox2" type="checkbox" id="checkbox2">
-                  <span></span> Looking for fundings
-                </label>
-      </li> -->
-
       <li class="field"><input ng-model="company.phone" class="phone input" type="tel" placeholder="Telephone Number" /></li>
       <li class="append field">
       		<input ng-model="company.address" class="xwide text input" type="text" placeholder="Address" />
             <div class="medium primary btn"><a ng-click="locate()">Map</a></div>
-	  </li>
+	    </li>
 
       <li class="field"></li>
       <li class="field"><textarea ng-model="company.description" class="input textarea" placeholder="Business description" rows="3"></textarea></li>

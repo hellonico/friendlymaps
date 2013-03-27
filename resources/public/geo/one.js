@@ -12,6 +12,7 @@ function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   var markers = [];
 
+
   function addMarker(loc) {
     $scope.company.location = loc;
     
@@ -62,11 +63,17 @@ function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
 
   // load company if we have an id
   var id = $routeParams["id"];
-  if(id != undefined) {
+  if(id) {
     $scope.company = CompanyResource.get({_id : id}, function() {
       addMarker($scope.company.location);
       $scope.updateIcon();
     }); 
+  } 
+  else {
+    $scope.company = {};
+    $scope.company.hiring = "false";
+    $scope.company.type = "startup";
+    console.log($scope.company);
   }
 
 }
