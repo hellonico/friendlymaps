@@ -51,7 +51,10 @@ function NavBarCtrl($scope, $location) {
 }
 
 var CATEGORIES = [
-  {name: "Start Up", value: "startup"},
-  {name: "Shared Office", value: "shared"},
-  {name: "Coffee Shop", value: "coffee"}
+  {name: "StartUp", value: "startup"},
+  {name: "Investor", value: "investor"},
+  {name: "Incubator", value: "incubator"},
+  {name: "Coworking", value: "coworking"},
+  {name: "R&D Center", value: "rdcenter"},
+  {name: "Community", value: "community"}
 ]

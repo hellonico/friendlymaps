@@ -2,7 +2,8 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
 
    var markers = [];
 
-   $scope.types = ["shared", "coffee", "startup"];
+   $scope.types = CATEGORIES;
+
    $scope.selected = undefined;
 
    $scope.isSelected = function(section) {
@@ -10,10 +11,18 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
    }
 
    $scope.subselect = function(type) {
-    $scope.selected = type;
-    $scope.companies = CompanyResource.query({type: type}, function() {
-      addMarkers($scope.companies);  
-    });
+    if($scope.selected == type) {
+      $scope.selected = undefined;
+      $scope.companies = CompanyResource.query(function() {
+        addMarkers($scope.companies);  
+      });  
+    } else {
+      $scope.selected = type;
+      $scope.companies = CompanyResource.query({type: type['value']}, function() {
+        addMarkers($scope.companies);  
+      });  
+    }
+
    }
 
    // map options
@@ -38,7 +47,7 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
   }
 
   function addMarkers(companies) {
-    console.log("showing:"+companies.length);
+    // console.log("showing:"+companies.length);
 
     // TODO: WHY ????
     map.clearMarkers(markers);
@@ -58,7 +67,7 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
     });
 
      google.maps.event.addListener(myMarker, 'click', function(event) {
-      console.log(event);
+      // console.log(event);
         $("#details").html("<h3>"+this.custom["name"]+"</h3>");
       if (this.custom["address"])
         $("#details").append("<h5>"+this.custom["address"]+"</h5>");
@@ -73,7 +82,7 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
 
     }
 
-    console.log("Markers"+markers.length);
+    $scope.markers_count = markers.length;
 
   }
   

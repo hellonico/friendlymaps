@@ -2,9 +2,10 @@
   <div class="row">
       <ul style="list-style: none;">
         <li style="display: inline;" ng-repeat="type in types" ng-class="{active : isSelected(type)}" >
-          <img ng-click="subselect(type)" src="/icons/{{type}}.png"/>
+          <img ng-click="subselect(type)" src="/icons/{{type['value']}}.png"/>
         </li>
-    </ul>
+      </ul>
+      Showing {{markers_count}} icons
     </div>
   </div>
 
