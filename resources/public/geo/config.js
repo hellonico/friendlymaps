@@ -1,3 +1,7 @@
+// Angular
+// http://angular-ui.github.com/
+// http://docs.angularjs.org/api/
+
 // Geocoding
 // https://developers.google.com/maps/documentation/geocoding/#Limits
 
@@ -21,6 +25,10 @@ var guidebookConfig = function($routeProvider) {
          controller: 'ListCtrl',
          templateUrl: '/view/list.html'
        })
+       .when("/search", {
+         controller: 'SearchCtrl',
+         templateUrl: '/view/search.html'
+       })
        .when("/map", {
          controller: 'MapCtrl',
          templateUrl: '/view/map.html'
@@ -30,10 +38,10 @@ var guidebookConfig = function($routeProvider) {
 
 // http://jacobmumm.com/2012/08/28/angular-js-services/
 angular
-  .module("myapp", ['ngResource'])
+  .module("myapp", ['ngResource', 'ui'])
   .config(guidebookConfig)
   .factory("CompanyResource", function ($resource) {
-    return $resource("/company/:_id", {_id: "@_id"}); 
+    return $resource("/company/:_id", {_id: "@_id"}, {'search':  {method:'GET', isArray:true} }); 
   });
 
 
@@ -45,8 +53,16 @@ google.maps.Map.prototype.clearMarkers = function(markers) {
 };
 
 function NavBarCtrl($scope, $location) {
+  $scope.searchfield = "";
+
   $scope.isActive = function(route) {
     return $location.url() == route;
+  }
+
+  $scope.search = function($event) {
+    $event.preventDefault();
+    console.log("searching");
+    $location.url( "/search?name=" + $scope.searchfield );
   }
 }
 

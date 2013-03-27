@@ -27,6 +27,7 @@
     )))
 
 (defroutes company
+  (GET "/search" {params :params}  (resp/json (data/find-by-name "company" (params :name))))
   (POST "/:id" {params :body} (do 
     (let [
       ps (parse-string (slurp params))

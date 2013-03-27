@@ -1,0 +1,10 @@
+
+<div class="row">
+
+<table class="table table-striped">
+<tr ng-repeat="company in companies">
+	<td><a href="#/edit/{{company._id}}">{{company.name}}</a></td>
+  <td><img style="height:32px;width:28px" src="/icons/{{company.type}}.png"/></td>
+</tr>
+</table>
+</div>

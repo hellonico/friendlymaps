@@ -1,5 +1,6 @@
 (ns friendly.data
 	(:require monger.json)
+	(:use monger.operators)
 	(:import org.bson.types.ObjectId)
 	(:require [monger.collection :as mc])
 	(:require [monger.core :as mg]))
@@ -24,3 +25,5 @@
 	(mc/find-maps serie))
 (defn find-some [serie params]
 	(mc/find-maps serie params))
+(defn find-by-name [serie namae]
+	(mc/find-maps serie {:name {$regex (str ".*" namae ".*") $options "i"} }))
