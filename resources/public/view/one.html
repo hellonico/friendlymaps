@@ -23,10 +23,8 @@
 
       <li class="field">
                 <div class="xwide picker">
-                  <select style="font-size:14px" ng-change="updateIcon()" ng-model="company.type">
-                    <option value="startup">Start Up</option>
-                    <option value="shared">Shared Office</option>
-                    <option value="coffee">Coffee Shop</option>
+                  <select id="select_types" style="font-size:14px" ng-change="updateIcon()" ng-model="company.type">
+                    <option ng-selected="company.type == type.value" ng-repeat="type in types" value="{{type.value}}">{{type.name}}</option>
                   </select>
                 </div>
                 <img id="type-icon" src="/icons/office.png"/>
@@ -50,7 +48,6 @@
 <div class="four columns">
 		<div style="margin-top: 100px; width:400px; height:300px;" id="map-canvas"></div>
 </div>
-
 
 </div>
 

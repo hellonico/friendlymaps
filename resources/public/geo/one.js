@@ -1,7 +1,5 @@
 function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
 
-  // var Company = $resource("/company/:_id", {_id: "@_id"});
-
   var loc;
 	var geocoder = new google.maps.Geocoder();
 	var mapOptions = {
@@ -60,6 +58,12 @@ function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
       
     });
 	}
+  // load types
+  $scope.types = CATEGORIES;
+  // console.log($scope.types);
+  // for(type in types) {
+  //   console.log(type);
+  // }
 
   // load company if we have an id
   var id = $routeParams["id"];
@@ -67,13 +71,16 @@ function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
     $scope.company = CompanyResource.get({_id : id}, function() {
       addMarker($scope.company.location);
       $scope.updateIcon();
+
+      console.log($("#select_types option").length); //.value($scope.company.type);
+      console.log($scope.types.length);
     }); 
   } 
   else {
     $scope.company = {};
     $scope.company.hiring = "false";
-    $scope.company.type = "startup";
-    console.log($scope.company);
+    $scope.company.type = CATEGORIES[0];
   }
 
+  
 }

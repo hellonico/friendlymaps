@@ -49,3 +49,9 @@ function NavBarCtrl($scope, $location) {
     return $location.url() == route;
   }
 }
+
+var CATEGORIES = [
+  {name: "Start Up", value: "startup"},
+  {name: "Shared Office", value: "shared"},
+  {name: "Coffee Shop", value: "coffee"}
+]
