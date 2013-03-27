@@ -1,11 +1,5 @@
 
   <div class="row">
-
-    <div>
-  	<h1 class="lead">Tokyo Startup Maps 
-      <div class="small secondary btn"><a href="#/list">List</a></div> 
-    </h1>
-    <div>
       <ul style="list-style: none;">
         <li style="display: inline;" ng-repeat="type in types" ng-class="{active : isSelected(type)}" >
           <img ng-click="subselect(type)" src="/icons/{{type}}.png"/>

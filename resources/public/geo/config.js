@@ -43,3 +43,9 @@ google.maps.Map.prototype.clearMarkers = function(markers) {
   }
   markers = [];
 };
+
+function NavBarCtrl($scope, $location) {
+  $scope.isActive = function(route) {
+    return $location.url() == route;
+  }
+}
