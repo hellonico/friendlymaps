@@ -71,6 +71,6 @@ var CATEGORIES = [
   {name: "Investor", value: "investor"},
   {name: "Incubator", value: "incubator"},
   {name: "Coworking", value: "coworking"},
-  {name: "R&D Center", value: "rdcenter"},
+  {name: "Academic/R&D", value: "rdcenter"},
   {name: "Community", value: "community"}
 ]
