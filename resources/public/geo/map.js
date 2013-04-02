@@ -56,7 +56,7 @@ function MapCtrl($scope, $resource, $location, CompanyResource) {
     for (i = 0; i < companies.length; i++) {
     
     var loc = companies[i]["location"];
-    var latlng = new google.maps.LatLng(loc["kb"], loc["lb"]);
+    var latlng = new google.maps.LatLng(loc["jb"], loc["kb"]);
     
     var myMarker = new google.maps.Marker({
       position: latlng,

@@ -13,21 +13,21 @@ function GeoCtrl($scope, $resource, $location, $routeParams, CompanyResource) {
 
   function addMarker(loc) {
     $scope.company.location = loc;
-    
 
-    var latlng = new google.maps.LatLng(loc["kb"], loc["lb"]);
-    
+    console.log(loc);
+    var latlng = new google.maps.LatLng(loc["jb"], loc["kb"]);
+
     map.clearMarkers(markers);
     map.setCenter(latlng);
-    
+
     var marker = new google.maps.Marker({
       map: map,
       title: $scope.company.address,
       flat:true,
       icon: "/icons/office-building.png",
       position: latlng
-        });
-      markers.push(marker);
+    });
+    markers.push(marker);
   }
 
   $scope.updateIcon = function() {
